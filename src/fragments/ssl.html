@@ -1,7 +1,7 @@
 <h2><i class="bi bi-shield-check"></i> Auto TLS/SSL</h2>
 <div class="row shadow rounded p-4 mt-4 col-md-8">
   <div class="col-md-6">
-    <h3>Let Pathwae to help you</h3>
+    <h3><i class="bi bi-code-slash"></i> Let Pathwae to help you</h3>
     <p>
       If you don't provide certificates, Pathwae generates temporary TLS
       certificates.
@@ -11,14 +11,17 @@
     </p>
   </div>
   <div class="col-md-6">
-    <h3>Or give your certificates</h3>
+    <h3><i class="bi bi-file-earmark-code"></i>Or give your certificates</h3>
     <p>
-      You can generate tusted certificates (with <code>mkcert</code> for
-      example) and then mount the directory to <code>/certs</code>
+      You can generate trusted certificates (with
+      <code><a href="https://mkcert.dev/" target="_blank">mkcert</a></code> for
+      example) and then mount the directory into <code>/certs</code> directory
+      of Pathwae container.
     </p>
     <p>
-      Pathwae will automatically find the certificates and the corresponding
-      hosts to use with.
+      Pathwae will <strong>automatically find the certificates</strong> and the
+      corresponding hosts to use with.
     </p>
+    <p>And that works with wildcard certificates, of course.</p>
   </div>
 </div>

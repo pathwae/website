@@ -1,11 +1,13 @@
 <h2><i class="bi bi-wrench"></i> Declare the routes</h2>
 <div class="row shadow rounded p-4 mt-4">
-  <div class="col-md-6">
+  <div class="col-md-6 border-right">
+    <h3><i class="bi bi-code-square"></i> Example</h3>
     <pre class="language-yaml">
     <code>
 services:
   foocontainer:
-    # your container here
+    # Your container here listening, for example, on port 5000.
+    # No label, no port to bind...
 
   proxy:
     # Pathwae!
@@ -17,6 +19,7 @@ services:
     environment:
     - CONFIG: |
         foo.bar.localhost:
+          # foocontainer port 5000
           to: http://foocontainer:5000
           force_ssl: true
     </code></pre>
@@ -43,7 +46,7 @@ services:
       The port <code>8080</code> provides a simple
       <a href="#ui">monitor</a> view of the backend.
     </p>
-    <h3><i class="bi bi-command"></i> What about "rootless" containers</h3>
+    <h3><i class="bi bi-command"></i> What about "rootless" containers?</h3>
     <p>
       You're using <code>Podman?</code> - Good news, that works! Pathwae does
       not use Docker API, you don't need to mount the socket file, everthing is
@@ -57,6 +60,12 @@ services:
     <pre class="language-bash"><code>
 sudo sysctl -w net.ipv4.ip_unprivileged_port_start=0
     </code></pre>
+  </div>
+  <div class="mt-md-4">
+    <h4>
+      <i class="bi bi-lightbulb"></i>
+      Don't want to change privileges / need a "near the reality" domain name!
+    </h4>
     <p>
       Another solution without the need to change privileges: set a
       <code>hostname</code> on the pathwae container and use
@@ -64,6 +73,13 @@ sudo sysctl -w net.ipv4.ip_unprivileged_port_start=0
         >Docker-Domains</a
       >
       daemon to have local domains.
+    </p>
+    <p>
+      <a href="https://github.com/metal3d/docker-domains" target="_blank"
+        >Docker-Domains</a
+      >
+      is a nice daemon that allow you to use whatever the domain you want, even
+      <code>.com</code> domains!
     </p>
   </div>
 </div>

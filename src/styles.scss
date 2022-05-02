@@ -29,7 +29,7 @@ body > header {
 }
 
 .bi {
-  color: $primary;
+  color: $secondary;
 }
 
 nav {
@@ -150,6 +150,15 @@ main ul > li {
     @extend .shadow;
     @extend .rounded;
     border-radius: 1em !important;
+  }
+}
+
+#project {
+  li {
+    @extend .bi;
+    &::before {
+      margin-right: 0 !important;
+    }
   }
 }
 
