@@ -2,7 +2,7 @@
 # Katenary command line: katenary convert
 apiVersion: v2
 appVersion: main-9433057
-description: A helm chart for website
-name: website
+description: A helm chart for pathwae website
+name: pathwae
 type: application
 version: 0.1.0
