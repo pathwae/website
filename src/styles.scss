@@ -1,0 +1,215 @@
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+
+@import "../node_modules/bootstrap/scss/variables";
+$primary: $blue-700;
+
+// Required
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+
+// 4. Include any optional Bootstrap CSS as needed
+@import "../node_modules/bootstrap/scss/utilities";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/helpers";
+@import "../node_modules/bootstrap/scss/navbar";
+@import "../node_modules/bootstrap/scss/nav";
+@import "../node_modules/bootstrap/scss/tables";
+
+// 5. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import "../node_modules/bootstrap/scss/utilities/api";
+
+body > header {
+  @extend .sticky-top;
+  @extend .shadow;
+}
+
+.bi {
+  color: $primary;
+}
+
+nav {
+  transition: all 0.7s ease-in-out;
+  h1 {
+    font-size: larger;
+    margin: 0;
+    color: $black;
+  }
+  ul {
+    .nav-link:hover,
+    .nav-link:focus,
+    a.active {
+      background-color: $primary;
+      color: $white;
+      &:hover {
+        color: $white;
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+#banner {
+  /*background-image: url("./images/pexels-scott-webb-1029624.jpg");*/
+  position: relative;
+  &::before {
+    width: 100%;
+    height: 100%;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("./images/cube-background-2484131_1920.jpg");
+    background-size: cover;
+    filter: brightness(0.5);
+  }
+  > div {
+    position: relative;
+  }
+  img {
+    background-blend-mode: hard-light;
+    min-width: 40%;
+    filter: invert(1);
+  }
+  p {
+    color: wheat;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .border-right {
+    border-right: 1px solid $secondary;
+  }
+  #presentation {
+    margin-top: -8rem;
+  }
+}
+
+main a {
+  color: $primary;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+main > div {
+  > div {
+    @extend .container;
+    @extend .m-auto;
+    @extend .my-2;
+    @extend .my-md-5;
+  }
+  > h2 {
+    color: $secondary;
+    text-transform: uppercase;
+    font-size: large;
+    @extend .text-center;
+    a {
+      color: $secondary;
+      visibility: hidden;
+      padding-left: 1em;
+    }
+    &:hover {
+      a {
+        visibility: visible;
+      }
+    }
+  }
+}
+
+main ul > li {
+  list-style: none;
+  position: relative;
+  &::before {
+    content: ">";
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5em;
+  }
+  a {
+    @extend .p-1;
+    @extend .m-1;
+  }
+}
+
+#presentation {
+  position: relative;
+  > div {
+    @extend .shadow;
+    @extend .rounded;
+    border-radius: 1em !important;
+  }
+}
+
+blockquote {
+  color: $primary;
+  font-size: large;
+  font-style: italic;
+  font-weight: bold;
+  @extend .text-center;
+}
+
+table.compare {
+  @extend .col-md-10;
+  @extend .mx-auto;
+  .small {
+    font-size: smaller;
+    color: $gray-500;
+  }
+  td,
+  th {
+    padding: 0.5em;
+    text-align: center;
+  }
+  .bi {
+    font-size: 1.5rem;
+  }
+  .bi-emoji-frown {
+    color: $danger !important;
+  }
+  .bi-emoji-smile {
+    color: $success !important;
+  }
+  .bi-emoji-neutral {
+    color: $gray-700 !important;
+  }
+}
+
+.hljs {
+  @extend .rounded;
+  @extend .shadow;
+}
+
+.fullable:hover {
+  cursor: pointer;
+}
+
+img.full {
+  transition: all 0.5s ease-in-out;
+  position: fixed;
+  transform: scale(0.65) translateY(-20%);
+  top: 0;
+  left: 0%;
+  z-index: 999999;
+  padding-top: 0;
+}
+
+.overlay {
+  @extend .sticky-top;
+  @extend .h-100;
+  @extend .w-100;
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  left: 0;
+  background: black;
+  opacity: 0.5;
+  &.hidden {
+    display: none;
+  }
+}

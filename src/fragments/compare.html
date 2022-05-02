@@ -1,0 +1,119 @@
+<h2><i class="bi bi-patch-question"></i> What about others reverse proxy</h2>
+<div class="rounded bg-white shadow p-5 col-md-6">
+    <h3><i class="bi bi-peace"></i> Of course, there are others solutions and we love them!</h3>
+  <p>
+    Pathwae is not the first one. Actually there is plenty of very powerful
+    reverse proxy. So, why to use this one?
+  </p>
+  <p>To help you to choose our proxy, the first question to answer is:</p>
+  <blockquote>
+    <p>Do you want a proxy for production or for development?</p>
+  </blockquote>
+  <p>
+    If you speak about development, so Pathwae is already a good choice. Because it's lightweight and
+    easy to use. You will not spend time to fix the reverse proxy, you will only
+    focus on your containers, your project, and your container stack.
+  </p>
+  <p>
+    Later, you'll use a real production reverse proxy like Traefik, Nginx, or
+    HAProxy
+  </p>
+  <p>
+    But, because it's a fashion, let's make a table to compare some solutions.
+  </p>
+  <table class="table compare">
+    <thead>
+      <th></th>
+      <th>Pathwae</th>
+      <th>Traefik</th>
+      <th>Nginx</th>
+    </thead>
+    <tbody>
+      <tr>
+        <th>TLS/SSL</th>
+        <td><i class="bi bi-emoji-smile"></i></td>
+        <td><i class="bi bi-emoji-smile"></i></td>
+        <td><i class="bi bi-emoji-smile"></i></td>
+      </tr>
+      <tr>
+        <th>Self-signed</th>
+        <td><i class="bi bi-emoji-smile"></i><br />
+    <span class="small">See <a href="#ssl">this section</a></span>
+        </td>
+        <td><i class="bi bi-emoji-neutral"></i><br/>
+    <span class="small">need to declare the certificates in a configuraiton file</span>
+        </td>
+        <td>
+          <i class="bi bi-emoji-neutral"></i><br />
+          <span class="small">need to create the server configuration</span>
+        </td>
+      </tr>
+      <tr>
+        <th>Automatic SSL/TLS</th>
+        <td><i class="bi bi-emoji-smile"></i></td>
+        <td><i class="bi bi-emoji-frown"></i>
+        </td>
+        <td>
+          <i class="bi bi-emoji-neutral"></i><br />
+          <span class="small">depends on the nginx container image, some have generic SSL certificates</span>
+        </td>
+      </tr>
+      <tr>
+        <th>Route declaration</th>
+        <td><i class="bi bi-emoji-smile"></i>
+            <br /><span class="small">no labels, no configuration file</span></td>
+        </td>
+        <td><i class="bi bi-emoji-neutral"></i>
+            <br /><span class="small">labels and/or configuration file</span></td>
+        </td>
+        <td><i class="bi bi-emoji-frown"></i>
+            <br /><span class="small">configuraiton file</span></td>
+        </td>
+      </tr>
+      <tr>
+        <th>Monitoring</th>
+        <td><i class="bi bi-emoji-smile"></i>
+            <br /><span class="small">Web UI</span></td>
+        </td>
+        <td><i class="bi bi-emoji-smile"></i>
+            <br /><span class="small">Web UI</span></td>
+        </td>
+        <td><i class="bi bi-emoji-frown"></i>
+            <br /><span class="small">no Web UI</span></td>
+        </td>
+      </tr>
+      <tr>
+        <th>For development<br/><span class="small">very subjective, yes</span></th>
+        <td><i class="bi bi-emoji-smile"></i></td>
+        <td><i class="bi bi-emoji-neutral"></i></td>
+        <td><i class="bi bi-emoji-neutral"></i></td>
+      </tr>
+      <tr>
+        <th>For production</th>
+        <td><i class="bi bi-emoji-neutral"></i><br/><span class="small">
+Actually that's OK but not the best choice</span></td>
+        <td><i class="bi bi-emoji-smile"></i></td>
+        <td><i class="bi bi-emoji-smile"></i></td>
+      </tr>
+      <tr>
+        <th>Response modification
+            <br />
+            <span class="small">like rewrite rules, specific redirections, ...</span>
+        </th>
+        <td><i class="bi bi-emoji-frown"></i><br/><span class="small">
+                Nothing excepting redirect to <code>https</code> address</span></td>
+        <td><i class="bi bi-emoji-neutral"></i><br/><span class="small">
+            some rules can be applied.
+            </span></td>
+        <td><i class="bi bi-emoji-smile"></i></td>
+      </tr>
+      <tr>
+        <th>Podman (rootless) compatibility</th>
+        <td><i class="bi bi-emoji-smile"></i></td>
+        <td><i class="bi bi-emoji-frown"></i><br/><span class="small">
+            Will never work with rootless container engines</span></td>
+        <td><i class="bi bi-emoji-smile"></i></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
