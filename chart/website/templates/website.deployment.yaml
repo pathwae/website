@@ -24,7 +24,7 @@ spec:
       containers:
         - name: website
           image: '{{ .Values.website.image }}'
-          imagePullPolicy: Alway
+          imagePullPolicy: Always
           ports:
             - name: website
               containerPort: 80
