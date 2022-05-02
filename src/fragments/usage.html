@@ -20,18 +20,21 @@ services:
           to: http://foocontainer:5000
           force_ssl: true
     </code></pre>
-    <p>And nvigate to <code>http://foo.bar.localhost</code></p>
+    <p>And navigate to <code>http://foo.bar.localhost</code></p>
     <p>
       <code>force_ssl</code> will automatically redirect the browser to
-      <code>https</code>
+      <code>https</code>.
     </p>
   </div>
   <div class="col-md-6">
     <h3>
-      <i class="bi bi-emoji-sunglasses-fill"></i> No labels to adapt, no
-      arguments to change.
+      <i class="bi bi-emoji-sunglasses-fill"></i> No label to adapt, no
+      arguments to change, no configuration file to mount.
     </h3>
-    <p>Everything is declared on the proxy container.</p>
+    <p>
+      Everything is declared on the proxy container environment. This is the
+      "standard" for containers.
+    </p>
     <p>
       You also don't need to use <code>depends_on</code> because the proxy
       doesn't need to wait for backends containers.
@@ -41,14 +44,26 @@ services:
       <a href="#ui">monitor</a> view of the backend.
     </p>
     <h3><i class="bi bi-command"></i> What about "rootless" containers</h3>
-    <p>You're using <code>Podman?</code> - Good news, that works!</p>
+    <p>
+      You're using <code>Podman?</code> - Good news, that works! Pathwae does
+      not use Docker API, you don't need to mount the socket file, everthing is
+      controlled by the environment.
+    </p>
     <p>
       You only need to allow your standard user to open
-      <code>80/443</code> ports
+      <code>80/443</code> ports with this command:
     </p>
     <p>That's simple:</p>
     <pre class="language-bash"><code>
 sudo sysctl -w net.ipv4.ip_unprivileged_port_start=0
     </code></pre>
+    <p>
+      Another solution without the need to change privileges: set a
+      <code>hostname</code> on the pathwae container and use
+      <a href="https://github.com/metal3d/docker-domains" target="_blank"
+        >Docker-Domains</a
+      >
+      daemon to have local domains.
+    </p>
   </div>
 </div>
