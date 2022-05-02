@@ -87,6 +87,13 @@ nav {
   #presentation {
     margin-top: -8rem;
   }
+  table.compare td .small {
+    display: block;
+  }
+  table.compare tbody th {
+    writing-mode: horizontal-tb !important;
+    transform: rotate(0) !important;
+  }
 }
 
 main a {
@@ -160,6 +167,11 @@ table.compare {
   .small {
     font-size: smaller;
     color: $gray-500;
+    display: none;
+  }
+  tbody th {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
   }
   td,
   th {
