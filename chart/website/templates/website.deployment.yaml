@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: '{{ .Release.Name }}-website'
+  labels:
+    katenary.io/component: website
+    katenary.io/project: website
+    katenary.io/release: '{{ .Release.Name }}'
+  annotations:
+    katenary.io/docker-compose-sha1: e809d58f811f27d44b71d80e169b728ea321f659
+    katenary.io/version: 0.2.0-alpha2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      katenary.io/component: website
+      katenary.io/release: '{{ .Release.Name }}'
+  template:
+    metadata:
+      labels:
+        katenary.io/component: website
+        katenary.io/release: '{{ .Release.Name }}'
+    spec:
+      containers:
+        - name: website
+          image: '{{ .Values.website.image }}'
+          ports:
+            - name: website
+              containerPort: 80
+

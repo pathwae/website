@@ -1,0 +1,8 @@
+
+Congratulations,
+
+Your application is now deployed. This may take a while to be up and responding.
+
+{{ if .Values.website.ingress.enabled -}}
+- website is accessible on : http://{{ .Values.website.ingress.host }}
+{{- end }}

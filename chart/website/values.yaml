@@ -1,0 +1,7 @@
+website:
+  image: quay.io/pathwae/website
+  ingress:
+    class: nginx
+    enabled: false
+    issuer: letsencrypt-staging
+    host: website.website.tld

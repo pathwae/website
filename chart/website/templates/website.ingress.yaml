@@ -1,0 +1,39 @@
+{{- if .Values.website.ingress.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: '{{ .Release.Name }}-website'
+  labels:
+    katenary.io/component: website
+    katenary.io/project: website
+    katenary.io/release: '{{ .Release.Name }}'
+  annotations:
+    katenary.io/docker-compose-sha1: e809d58f811f27d44b71d80e169b728ea321f659
+    katenary.io/version: 0.2.0-alpha2
+    cert-manager.io/cluster-issuer: '{{ .Values.website.ingress.issuer }}'
+spec:
+  {{- if and .Values.website.ingress.class (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion) }}
+  ingressClassName: '{{ .Values.website.ingress.class }}'
+  {{- end }}
+  tls:
+    - hosts:
+      - '{{ .Values.website.ingress.host }}'
+      secretName: '{{ .Release.Name }}-tls'
+  rules:
+    - host: '{{ .Values.website.ingress.host }}'
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              {{- if semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion }}
+              service:
+                name: '{{ .Release.Name }}-website'
+                port:
+                  number: 80
+              {{- else }}
+              serviceName: '{{ .Release.Name }}-website'
+              servicePort: 80
+              {{- end }}
+
+{{- end -}}

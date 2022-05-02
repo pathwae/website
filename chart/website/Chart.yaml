@@ -1,0 +1,8 @@
+# Create on 2022-05-02T16:33:14+02:00
+# Katenary command line: katenary convert
+apiVersion: v2
+appVersion: main-9433057
+description: A helm chart for website
+name: website
+type: application
+version: 0.1.0
