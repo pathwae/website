@@ -1,4 +1,4 @@
-<h2><i class="bi bi-wrench"></i> Declare the routes</h2>
+<h2><i class="bi bi-wrench"></i>Declare the routes</h2>
 <div class="row shadow rounded p-4 mt-4">
   <div class="col-md-6 border-right">
     <h3><i class="bi bi-code-square"></i> Example</h3>
@@ -23,11 +23,16 @@ services:
           to: http://foocontainer:5000
           force_ssl: true
     </code></pre>
-    <p>And navigate to <code>http://foo.bar.localhost</code></p>
-    <p>
-      <code>force_ssl</code> will automatically redirect the browser to
-      <code>https</code>.
-    </p>
+    <ul>
+      <li>
+        Use <code>docker-compose up</code> or <code>podman-compose up</code>
+      </li>
+      <li>And navigate to <code>http://foo.bar.localhost</code></li>
+      <li>
+        <code>force_ssl</code> will automatically redirect the browser to
+        <code>https</code>.
+      </li>
+    </ul>
   </div>
   <div class="col-md-6">
     <h3>
@@ -48,7 +53,7 @@ services:
     </p>
     <h3><i class="bi bi-command"></i> What about "rootless" containers?</h3>
     <p>
-      You're using <code>Podman?</code> - Good news, that works! Pathwae does
+      You're using <code>Podman</code>? - Good news, that works! Pathwae does
       not use Docker API, you don't need to mount the socket file, everthing is
       controlled by the environment.
     </p>
@@ -60,6 +65,12 @@ services:
     <pre class="language-bash"><code>
 sudo sysctl -w net.ipv4.ip_unprivileged_port_start=0
     </code></pre>
+    <p>Make it permanent if you want:</p>
+    <pre class="language-bash"><code>
+    sudo mkdir -p /etc/sysctl.d
+    echo "net.ipv4.ip_unprivileged_port_start=0" | \
+       sudo tee /etc/sysctl.d/99-unprivileged_port.conf
+    <code></pre>
   </div>
   <div class="mt-md-4">
     <h4>
@@ -69,12 +80,9 @@ sudo sysctl -w net.ipv4.ip_unprivileged_port_start=0
     <p>One solution (Docker only for the moment):</p>
     <ul>
       <li>set a <code>hostname</code> on the pathwae container</li>
-      <li>
-        and use
+      <li>and use
         <a href="https://github.com/metal3d/docker-domains" target="_blank"
-          >Docker-Domains</a
-        >
-        daemon to have local domains.
+          >Docker-Domains</a> daemon to have local domains.
       </li>
     </ul>
     <p>
@@ -84,5 +92,6 @@ sudo sysctl -w net.ipv4.ip_unprivileged_port_start=0
       is a nice daemon that allow you to use whatever the domain you want, even
       <code>.com</code> domains!
     </p>
+    <p>It will also remove the need to bind ports 80, 443 and 8080 to localhost.</p>
   </div>
 </div>

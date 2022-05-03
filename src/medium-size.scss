@@ -1,0 +1,31 @@
+.border-right {
+  border-right: 1px solid $secondary;
+}
+#presentation {
+  margin-top: -8rem;
+}
+table.compare td .small {
+  display: block;
+}
+table.compare tbody th {
+  writing-mode: horizontal-tb !important;
+  transform: rotate(0) !important;
+}
+main > div > h2 {
+  margin-top: 1rem !important;
+  &::before {
+    content: "";
+    display: block;
+    position: relative;
+    width: 30%;
+    margin-left: 35%;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      $secondary,
+      rgba(255, 255, 255, 0)
+    );
+    margin-bottom: 1rem;
+  }
+}

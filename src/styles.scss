@@ -80,22 +80,6 @@ nav {
   }
 }
 
-@include media-breakpoint-up(md) {
-  .border-right {
-    border-right: 1px solid $secondary;
-  }
-  #presentation {
-    margin-top: -8rem;
-  }
-  table.compare td .small {
-    display: block;
-  }
-  table.compare tbody th {
-    writing-mode: horizontal-tb !important;
-    transform: rotate(0) !important;
-  }
-}
-
 main a {
   color: $primary;
   text-decoration: none;
@@ -112,10 +96,14 @@ main > div {
     @extend .my-md-5;
   }
   > h2 {
+    .bi {
+      margin-right: 0.25rem;
+    }
+    @extend .mt-5;
+    @extend .text-center;
     color: $secondary;
     text-transform: uppercase;
     font-size: large;
-    @extend .text-center;
     a {
       color: $secondary;
       visibility: hidden;
@@ -233,4 +221,8 @@ img.full {
   &.hidden {
     display: none;
   }
+}
+
+@include media-breakpoint-up(md) {
+  @import "./medium-size.scss";
 }
