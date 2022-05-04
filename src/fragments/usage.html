@@ -3,8 +3,7 @@
   <div class="col-md-6">
     <h3><i class="bi bi-code-square"></i> Example</h3>
     <pre class="language-yaml">
-    <code>
-services:
+    <code>services:
   foocontainer:
     # Your container here listening, for example,
     # on port 5000.
@@ -22,8 +21,7 @@ services:
         foo.bar.localhost:
           # foocontainer port 5000
           to: http://foocontainer:5000
-          force_ssl: true
-    </code></pre>
+          force_ssl: true</code></pre>
     <ul>
       <li>
         Use <code>docker-compose up</code> or <code>podman-compose up</code>
@@ -63,15 +61,31 @@ services:
       <code>80/443</code> ports with this command:
     </p>
     <p>That's simple:</p>
-    <pre class="language-bash"><code>
-sudo sysctl -w net.ipv4.ip_unprivileged_port_start=0
-    </code></pre>
+    <pre class="language-bash"><code>sudo sysctl -w net.ipv4.ip_unprivileged_port_start=0</code></pre>
     <p>Make it permanent if you want:</p>
-    <pre class="language-bash"><code>
-    sudo mkdir -p /etc/sysctl.d
-    echo "net.ipv4.ip_unprivileged_port_start=0" | \
-       sudo tee /etc/sysctl.d/99-unprivileged_port.conf
-    <code></pre>
+    <pre class="language-bash"><code>sudo mkdir -p /etc/sysctl.d
+echo "net.ipv4.ip_unprivileged_port_start=0" | \
+   sudo tee /etc/sysctl.d/99-unprivileged_port.conf<code></pre>
+  </div>
+  <div id="conf-file">
+      <h4><i class="bi bi-filetype-yml"></i>But I like configuration files!</h4>
+      <p>OK, no problem, you can create the confiuration file:</p>
+      <pre><code class="language-yaml">foo.bar.localhost:
+  to: http://foocontainer:5000
+  force_ssl: true
+</code></pre>
+<p>Then mount the file in Pathwae container, and indicate the configuration file path with <code>CONFIG_FILE</code> environment variable.</p>
+<pre><code class="language-yaml">services:
+    proxy:
+        image: quay.io/pathwae/proxy
+        ports:
+        - "80:80"
+        - "443:443"
+        - "8080:8080"
+        environment:
+        - CONFIG_FILE: /config/config.yaml
+        volumes:
+        - ./config.yaml:/config/config.yaml:ro,z</code></pre>
   </div>
   <div class="mt-md-4">
     <h4>
