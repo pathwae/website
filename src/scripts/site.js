@@ -1,5 +1,5 @@
-import hljs from "../node_modules/highlight.js/";
-import "../node_modules/highlight.js/scss/github-dark.scss";
+import hljs from "../../node_modules/highlight.js/";
+import "../../node_modules/highlight.js/scss/github-dark.scss";
 
 // add links on heach H2 element inside the content blocks. This is useful
 // for the navigation bar links to point on it.
@@ -61,6 +61,7 @@ function imageFullable() {
       evt.stopPropagation();
     });
   });
+  //
   // if "excape" is clicked, remove the full class for all
   document.addEventListener("keyup", (e) => {
     if (e.key === "Escape") {
@@ -70,6 +71,7 @@ function imageFullable() {
       });
     }
   });
+
   // and any click on the document will remove the full class for all
   document.addEventListener("click", () => {
     images.forEach((image) => {
@@ -79,6 +81,16 @@ function imageFullable() {
   });
 }
 
+// create a "top" link that will scroll to the top of the page.
+function topLink() {
+  const link = document.createElement("button");
+  link.classList.add("top", "bi", "bi-arrow-up");
+  link.addEventListener("click", () => {
+    window.scrollTo(0, 0);
+  });
+  document.body.appendChild(link);
+}
+
 // all theses functions are called when the page is loaded.
 [
   addHeadingLinks,
@@ -86,6 +98,7 @@ function imageFullable() {
   setStartingLinkActive,
   imageFullable,
   highlight,
+  topLink,
 ].forEach((fn) => {
   document.addEventListener("DOMContentLoaded", fn);
 });

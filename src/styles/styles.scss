@@ -1,28 +1,33 @@
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+/*
+We are "mobile first" - this file only take care of mobile devices.
+To change desktop, please use medium-size.scss file!
+ */
 
-@import "../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+
+@import "../../node_modules/bootstrap/scss/variables";
 $primary: $blue-700;
 
 // Required
-@import "../node_modules/bootstrap/scss/mixins";
-@import "../node_modules/bootstrap/scss/root";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/root";
 
 // 4. Include any optional Bootstrap CSS as needed
-@import "../node_modules/bootstrap/scss/utilities";
-@import "../node_modules/bootstrap/scss/reboot";
-@import "../node_modules/bootstrap/scss/type";
-@import "../node_modules/bootstrap/scss/images";
-@import "../node_modules/bootstrap/scss/containers";
-@import "../node_modules/bootstrap/scss/grid";
-@import "../node_modules/bootstrap/scss/helpers";
-@import "../node_modules/bootstrap/scss/navbar";
-@import "../node_modules/bootstrap/scss/nav";
-@import "../node_modules/bootstrap/scss/tables";
-@import "../node_modules/bootstrap/scss/buttons";
+@import "../../node_modules/bootstrap/scss/utilities";
+@import "../../node_modules/bootstrap/scss/reboot";
+@import "../../node_modules/bootstrap/scss/type";
+@import "../../node_modules/bootstrap/scss/images";
+@import "../../node_modules/bootstrap/scss/containers";
+@import "../../node_modules/bootstrap/scss/grid";
+@import "../../node_modules/bootstrap/scss/helpers";
+@import "../../node_modules/bootstrap/scss/navbar";
+@import "../../node_modules/bootstrap/scss/nav";
+@import "../../node_modules/bootstrap/scss/tables";
+@import "../../node_modules/bootstrap/scss/buttons";
 
 // 5. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
-@import "../node_modules/bootstrap/scss/utilities/api";
+@import "../../node_modules/bootstrap/scss/utilities/api";
 
 /* For the header and navigation bar */
 body {
@@ -38,7 +43,7 @@ body > header {
     h1 {
       font-size: larger;
       margin: 0;
-      color: $black;
+      color: $dark;
     }
     @extend .navbar;
     @extend .navbar-dark;
@@ -78,7 +83,6 @@ body > header {
         display: none;
       }
       button {
-        @extend .btn;
         @extend .btn-dark;
       }
       // button is clicked, display the menu;
@@ -123,7 +127,7 @@ footer {
     position: absolute;
     top: 0;
     left: 0;
-    background-image: url("./images/cube-background-2484131_1920.jpg");
+    background-image: url("../images/cube-background-2484131_1920.jpg");
     background-size: cover;
     filter: brightness(0.5);
   }
@@ -317,6 +321,22 @@ to prevent the content from overflowing */
   }
 }
 
+/* buttons are all .btn */
+button {
+  @extend .btn;
+}
+
+/* top button created by site.js */
+button.top {
+  @extend .position-fixed;
+  @extend .bg-dark;
+  @extend .text-light;
+  @extend .display-4;
+  bottom: 2rem;
+  right: 2rem;
+}
+
+/* Adaptation for desktop */
 @include media-breakpoint-up(md) {
   @import "./medium-size.scss";
 }
