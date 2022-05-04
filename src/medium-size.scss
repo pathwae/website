@@ -1,3 +1,24 @@
+body > header {
+  position: fixed !important;
+  top: 0;
+  width: 100vw;
+  z-index: 999;
+  /* not on mobile, remove the menu button and leave the default ul/li */
+  nav .menu {
+    button {
+      display: none !important;
+      + ul,
+      + ul:hover {
+        display: flex !important;
+        position: relative !important;
+        width: auto !important;
+        box-shadow: none !important;
+      }
+    }
+  }
+}
+
+/* Gradients */
 $line-top-gradient: tint-color($secondary, 50);
 
 .border-right {
@@ -18,18 +39,28 @@ $line-top-gradient: tint-color($secondary, 50);
     right: 0;
   }
 }
+
+/* Make the presentation overlay the banner */
 #presentation {
-  margin-top: -8rem;
+  margin-top: -3rem;
+  > div {
+    margin: 0 auto !important;
+  }
 }
+
+/* Back to normal, see the style.scss to sse the transformation made on table */
 table.compare td .small {
   display: block;
 }
+
 table.compare tbody th {
   writing-mode: horizontal-tb !important;
   transform: rotate(0) !important;
 }
-main > div > h2 {
-  margin-top: 1rem !important;
+
+/* Draw a gradient line on top */
+main article > h2,
+footer {
   &::before {
     content: "";
     display: block;
@@ -44,5 +75,12 @@ main > div > h2 {
       rgba(255, 255, 255, 0)
     );
     margin-bottom: 1rem;
+  }
+}
+
+/* For all first column, draw a gradient border on the right */
+main > article > div {
+  div.col-md-6:first-child {
+    @extend .border-right;
   }
 }

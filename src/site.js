@@ -4,7 +4,7 @@ import "../node_modules/highlight.js/scss/github-dark.scss";
 // add links on heach H2 element inside the content blocks. This is useful
 // for the navigation bar links to point on it.
 function addHeadingLinks() {
-  const headings = document.querySelectorAll("main > div > h2");
+  const headings = document.querySelectorAll("main > article > h2");
   headings.forEach((heading) => {
     const parentDivId = heading.parentElement.id;
     const link = document.createElement("a");

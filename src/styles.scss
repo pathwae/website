@@ -19,38 +19,98 @@ $primary: $blue-700;
 @import "../node_modules/bootstrap/scss/navbar";
 @import "../node_modules/bootstrap/scss/nav";
 @import "../node_modules/bootstrap/scss/tables";
+@import "../node_modules/bootstrap/scss/buttons";
 
 // 5. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
 @import "../node_modules/bootstrap/scss/utilities/api";
 
+/* For the header and navigation bar */
+body {
+  @extend .d-flex;
+  @extend .flex-column;
+}
 body > header {
-  @extend .sticky-top;
   @extend .shadow;
+  @extend .position-relative;
+  @extend .bg-white;
+  nav {
+    transition: all 0.7s ease-in-out;
+    h1 {
+      font-size: larger;
+      margin: 0;
+      color: $black;
+    }
+    @extend .navbar;
+    @extend .navbar-dark;
+    > div {
+      @extend .container;
+    }
+    .logo-link {
+      @extend .navbar-brand;
+      @extend .text-primary;
+      @extend .d-flex;
+      @extend .align-items-center;
+      @extend .flex-row;
+    }
+    ul {
+      @extend .nav;
+      li {
+        @extend .nav-item;
+        a {
+          @extend .nav-link;
+        }
+      }
+
+      .nav-link:hover,
+      .nav-link:focus,
+      a.active {
+        background-color: $primary;
+        color: $white;
+        &:hover {
+          color: $white;
+          opacity: 0.8;
+        }
+      }
+    }
+    .menu {
+      position: relative;
+      ul {
+        display: none;
+      }
+      button {
+        @extend .btn;
+        @extend .btn-dark;
+      }
+      // button is clicked, display the menu;
+      button {
+        &:focus + ul,
+        + ul:hover {
+          @extend .shadow;
+          @extend .position-absolute;
+          @extend .rounded;
+
+          width: 70vw;
+          display: block;
+          right: 0;
+          z-index: 1000;
+          background: $white;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  @extend .mt-auto;
+  @extend .py-3;
+  > div {
+    @extend .container;
+    @extend .text-center;
+  }
 }
 
 .bi {
   color: $secondary;
-}
-
-nav {
-  transition: all 0.7s ease-in-out;
-  h1 {
-    font-size: larger;
-    margin: 0;
-    color: $black;
-  }
-  ul {
-    .nav-link:hover,
-    .nav-link:focus,
-    a.active {
-      background-color: $primary;
-      color: $white;
-      &:hover {
-        color: $white;
-        opacity: 0.8;
-      }
-    }
-  }
 }
 
 #banner {
@@ -88,12 +148,18 @@ main a {
   }
 }
 
-main > div {
+main > article {
   > div {
+    @extend .row;
     @extend .container;
     @extend .m-auto;
-    @extend .my-2;
-    @extend .my-md-5;
+    @extend .mt-0;
+    @extend .mb-2;
+    @extend .shadow;
+    @extend .p-5;
+    @extend .col-md-8;
+    @extend .bg-white;
+    @extend .rounded;
   }
   > h2 {
     .bi {
@@ -132,13 +198,17 @@ main ul > li {
   }
 }
 
+#banner {
+  @extend .text-center;
+  @extend .py-md-5;
+}
+
 #presentation {
-  position: relative;
+  @extend .container;
   > div {
-    @extend .shadow;
-    @extend .rounded;
-    border-radius: 1em !important;
+    @extend .col-md-8;
   }
+  position: relative;
 }
 
 #project {
@@ -147,6 +217,20 @@ main ul > li {
     &::before {
       margin-right: 0 !important;
     }
+  }
+}
+
+#usage {
+  > div {
+    @extend .col-lg-8;
+    @extend .col-md-12;
+  }
+}
+
+#ui,
+#ssl {
+  > div {
+    @extend .col-md-6;
   }
 }
 
@@ -220,6 +304,16 @@ img.full {
   opacity: 0.5;
   &.hidden {
     display: none;
+  }
+}
+
+/* for large cols, apply something better than col-md-x 
+to prevent the content from overflowing */
+@media (max-width: 1550px) {
+  .large-cols {
+    > div {
+      width: 100%;
+    }
   }
 }
 
