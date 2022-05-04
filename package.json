@@ -7,7 +7,7 @@
     "predev": "rm -rf .tmp",
     "dev": "parcel --dist-dir .tmp",
     "prebuild": "rm -rf dist",
-    "build": "parcel build; cp src/robot.txt dist/"
+    "build": "parcel build; cp src/robots.txt dist/"
   },
   "devDependencies": {
     "@parcel/packager-raw-url": "2.5.0",
